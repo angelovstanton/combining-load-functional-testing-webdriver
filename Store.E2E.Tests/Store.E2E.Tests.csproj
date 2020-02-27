@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
+    <PackageReference Include="Selenium.Chrome.WebDriver" Version="79.0.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Titanium.Web.Proxy" Version="3.1.1254" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E2E.Core\E2E.Core.csproj" />
+    <ProjectReference Include="..\E2E.Load.Core\E2E.Load.Core.csproj" />
+    <ProjectReference Include="..\E2E.Web.Core\E2E.Web.Core.csproj" />
+  </ItemGroup>
+
+</Project>
