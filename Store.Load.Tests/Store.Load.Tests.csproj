@@ -13,5 +13,15 @@
     <PackageReference Include="Titanium.Web.Proxy" Version="3.1.1254" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\E2E.Core\E2E.Core.csproj" />
+    <ProjectReference Include="..\E2E.Load.Core\E2E.Load.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testFrameworkSettings.$(Configuration).json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

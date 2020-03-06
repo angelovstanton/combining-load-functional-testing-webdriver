@@ -19,7 +19,10 @@ namespace E2E.Load.Core.Configuration
 {
     public static class ConfigurationSettingsExtensions
     {
-        public static LoadTestingConfiguration GetLoadTestingSettings(this ConfigurationService service)
-            => ConfigurationService.Instance.Root.GetSection("loadTestingSettings").Get<LoadTestingConfiguration>();
+        public static LoadTestingSettings GetLoadTestingSettings(this ConfigurationService service)
+            => ConfigurationService.Instance.Root.GetSection("loadTestingSettings").Get<LoadTestingSettings>();
+
+        public static WebProxySettings GetWebProxySettings(this ConfigurationService service)
+            => ConfigurationService.Instance.Root.GetSection("webProxySettings").Get<WebProxySettings>();
     }
 }

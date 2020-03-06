@@ -1,0 +1,30 @@
+﻿{
+  "loadTestingSettings": {
+    "isEnabled": "true",
+    "defaultHost": "demos.bellatrix.solutions",
+    "shouldRecordHostRequestsOnly": "true",
+    "requestsFileLocation": "AssemblyFolder\\..\\..\\..\\..\\Store.E2E.Tests\\bin\\Debug\\netcoreapp3.1\\LoadTestsRequests\\",
+    "certificatePaths": [ "AssemblyFolder\\bellatrix.cer" ],
+    "ignoreUrlRequestsPatterns": [ ".*wp-admin.*" ]
+  },
+  "webProxySettings": {
+    "isEnabled": "true",
+    "pathToSslCertificate": "automatetheplanet.cer"
+  },
+  "logging": {
+    "isEnabled": "true",
+    "isConsoleLoggingEnabled": "true",
+    "isDebugLoggingEnabled": "true",
+    "isEventLoggingEnabled": "false",
+    "isFileLoggingEnabled": "true",
+    "outputTemplate": "[{Timestamp:HH:mm:ss}] {Message:lj}{NewLine}",
+    "addUrlToBddLogging": "true"
+  },
+  "apiSettings": {
+    "baseUrl": "http://demos.bellatrix.solutions",
+    "clientTimeoutSeconds": "30",
+    "maxRetryAttempts": "0",
+    "pauseBetweenFailures": "0",
+    "timeUnit": "1"
+  }
+}

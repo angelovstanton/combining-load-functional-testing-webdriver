@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 namespace E2E.Load.Core
 {
     public class ResponseAssertion

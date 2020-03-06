@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.IO;
 using E2E.Load.Core.Model.Results;
 

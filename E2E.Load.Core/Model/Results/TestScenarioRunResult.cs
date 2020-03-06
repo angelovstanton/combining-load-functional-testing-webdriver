@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,15 @@ namespace E2E.Load.Core.Model.Results
             RunId = Guid.NewGuid();
         }
 
-     
+
         public List<RequestResults> RequestResults { get; set; }
         public Guid RunId { get; set; }
-        public bool Passed => HaveAllResponseAssertionResultsPassed() && RequestResults.Count(x => !x.IsSuccessful) == 0;
+
+        public bool Passed =>
+            HaveAllResponseAssertionResultsPassed() && RequestResults.Count(x => !x.IsSuccessful) == 0;
+
         public TimeSpan ExecutionTime { get; set; }
-        public int TotalAssertionsCount  => GetTotalAssertionsCount();
+        public int TotalAssertionsCount => GetTotalAssertionsCount();
         public int FailedAssertionsCount => GetFailedAssertionsCount();
         public int PassedAssertionsCount => GetPassedAssertionsCount();
 

@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -19,10 +20,14 @@ namespace E2E.Load.Core.Model.Results
 {
     public class TestScenarioResults
     {
-        public TestScenarioResults() => TestScenarioRunResults = new ConcurrentDictionary<Guid, TestScenarioRunResult>();
+        public TestScenarioResults() =>
+            TestScenarioRunResults = new ConcurrentDictionary<Guid, TestScenarioRunResult>();
 
         public string TestName { get; set; }
-        public double AverageExecutionTimeSeconds => TestScenarioRunResults.Values.Average(x => x.ExecutionTime.TotalSeconds);
+
+        public double AverageExecutionTimeSeconds =>
+            TestScenarioRunResults.Values.Average(x => x.ExecutionTime.TotalSeconds);
+
         public double MaxExecutionTimeSeconds => TestScenarioRunResults.Values.Max(x => x.ExecutionTime.TotalSeconds);
         public double MinExecutionTimeSeconds => TestScenarioRunResults.Values.Min(x => x.ExecutionTime.TotalSeconds);
         public int TimesExecuted { get; set; }

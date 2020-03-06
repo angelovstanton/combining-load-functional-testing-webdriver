@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 using System;
+using E2E.Load.Core.Services;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -26,6 +27,7 @@ namespace E2E.Web.Core
             _webDriver = webDriver;
             _webElement = webElement;
             By = by;
+            Console.WriteLine(By.ToString());
         }
 
         public By By { get; }
@@ -51,6 +53,20 @@ namespace E2E.Web.Core
         {
             _webElement?.Clear();
             _webElement?.SendKeys(text);
+            RequestModificationSetter.SetRequestModification(text);
+        }
+
+        public void EnsuredTextIs(string value)
+        {
+             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30));
+            webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(_webElement, value));
+            ResponseAssertionSetter.AddResponseAssertionToHttpRequest(GetLocatorInfo().Item1, GetLocatorInfo().Item2, value);
+        }
+
+        private (string, string) GetLocatorInfo()
+        {
+            string[] locatorParts = By.ToString().Split(':');
+            return (locatorParts[0], locatorParts[1].TrimStart());
         }
 
         private void WaitToBeClickable(By by)

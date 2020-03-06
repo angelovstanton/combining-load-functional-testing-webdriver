@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using E2E.Load.Core.Model.Results;
 
 namespace E2E.Load.Core.Model.Ensures
@@ -24,9 +25,11 @@ namespace E2E.Load.Core.Model.Ensures
             var responseAssertionResults = new ResponseAssertionResults();
             if (loadTestElement.HtmlNode.InnerText != expectedValue)
             {
-                responseAssertionResults.AssertionType = $"{EnsureType}- {loadTestElement.Locator}={loadTestElement.LocatorValue} Expected = {expectedValue}";
+                responseAssertionResults.AssertionType =
+                    $"{EnsureType}- {loadTestElement.Locator}={loadTestElement.LocatorValue} Expected = {expectedValue}";
                 responseAssertionResults.Passed = false;
-                responseAssertionResults.FailedMessage = $"Element with locator {loadTestElement.Locator}={loadTestElement.LocatorValue} text wasn't equal to {expectedValue}.";
+                responseAssertionResults.FailedMessage =
+                    $"Element with locator {loadTestElement.Locator}={loadTestElement.LocatorValue} text wasn't equal to {expectedValue} it was {loadTestElement.HtmlNode.InnerText}.";
             }
 
             return responseAssertionResults;

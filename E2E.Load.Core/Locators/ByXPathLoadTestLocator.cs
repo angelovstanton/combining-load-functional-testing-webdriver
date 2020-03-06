@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Linq;
 using HtmlAgilityPack;
 
@@ -18,7 +19,7 @@ namespace E2E.Load.Core.Model.Locators
 {
     public class ByXPathLoadTestLocator : LoadTestLocator
     {
-        public override string LocatorType => "Bellatrix.Web.ByXpath";
+        public override string LocatorType => "By.XPath";
 
         public override LoadTestElement LocateElement(HtmlDocument htmlDoc, string locatorValue)
         {

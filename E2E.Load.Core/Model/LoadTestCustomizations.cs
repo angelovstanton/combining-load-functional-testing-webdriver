@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Collections.Generic;
 using System.Linq;
 using E2E.Load.Core.Model.Ensures;
@@ -24,7 +25,9 @@ namespace E2E.Load.Core.Model
         private readonly List<LoadTestEnsureHandler> _loadTestEnsureHandler;
         private readonly List<ITestScenarioMixtureDeterminer> _testScenarioMixtureDeterminers;
 
-        public LoadTestCustomizations(List<LoadTestLocator> loadTestLocators, List<LoadTestEnsureHandler> loadTestEnsureHandler, List<ITestScenarioMixtureDeterminer> testScenarioMixtureDeterminers)
+        public LoadTestCustomizations(List<LoadTestLocator> loadTestLocators,
+            List<LoadTestEnsureHandler> loadTestEnsureHandler,
+            List<ITestScenarioMixtureDeterminer> testScenarioMixtureDeterminers)
         {
             _loadTestLocators = loadTestLocators;
             _loadTestEnsureHandler = loadTestEnsureHandler;

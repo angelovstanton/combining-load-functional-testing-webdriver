@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Linq;
 using HtmlAgilityPack;
 
@@ -18,7 +19,7 @@ namespace E2E.Load.Core.Model.Locators
 {
     public class ByTagLoadTestLocator : LoadTestLocator
     {
-        public override string LocatorType => "Bellatrix.Web.ByTag";
+        public override string LocatorType => "By.Tag";
 
         public override LoadTestElement LocateElement(HtmlDocument htmlDoc, string locatorValue)
         {

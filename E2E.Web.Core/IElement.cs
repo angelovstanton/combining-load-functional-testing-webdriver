@@ -21,5 +21,6 @@ namespace E2E.Web.Core
         void TypeText(string text);
         IElement FindElement(By locator);
         void Click();
+        void EnsuredTextIs(string value);
     }
 }

@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Text;
 using E2E.Load.Core.Model.Results;
 
@@ -21,7 +22,8 @@ namespace E2E.Load.Core.Report
         public string GenerateHtml(LoadTestRunResults loadTestRunResults)
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"<br><span class=\"titleLabel\">Total Execution Time:</span>  <span class=\"titleLabelValue\">{loadTestRunResults.TotalExecutionTime}</span><br><br>");
+            sb.AppendLine(
+                $"<br><span class=\"titleLabel\">Total Execution Time:</span>  <span class=\"titleLabelValue\">{loadTestRunResults.TotalExecutionTime}</span><br><br>");
             sb.AppendLine("<span class=\"titleLabel\">Test Scenarios Execution Times</span> <br>");
             sb.AppendLine("<div class=\"chart-container\" style=\"overflow: hidden; height: 500px; width: 800px\">");
             sb.AppendLine("<canvas id=\"testScenariosExecutionTimesChart\"></canvas>");
@@ -32,22 +34,34 @@ namespace E2E.Load.Core.Report
             {
                 sb.AppendLine($"<div id=\"test{testScenarioCount}\">");
 
-                sb.AppendLine($"<span class=\"titleLabel\">Test Scenario:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TestName}</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Average Execution Time:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.AverageExecutionTimeSeconds} seconds</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Max Execution Time:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.MaxExecutionTimeSeconds} seconds</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Min Execution Time:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.MinExecutionTimeSeconds} seconds</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Times Executed:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TimesExecuted}</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Times Passed:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TimesPassed}</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Times Failed:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TimesFailed}</span><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Weight:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.Weight}</span><br><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Test Scenario:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TestName}</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Average Execution Time:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.AverageExecutionTimeSeconds} seconds</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Max Execution Time:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.MaxExecutionTimeSeconds} seconds</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Min Execution Time:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.MinExecutionTimeSeconds} seconds</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Times Executed:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TimesExecuted}</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Times Passed:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TimesPassed}</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Times Failed:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TimesFailed}</span><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Weight:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.Weight}</span><br><br>");
                 sb.AppendLine($"<div id=\"jsGridRequests{testScenarioCount}\"></div><br><br>");
 
-                sb.AppendLine($"<span class=\"titleLabel\">Failed Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.FailedAssertionsCount}</span><br><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Failed Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.FailedAssertionsCount}</span><br><br>");
                 sb.AppendLine($"<div id=\"jsGridFailedAssertions{testScenarioCount}\"></div><br><br>");
-                
-                sb.AppendLine($"<span class=\"titleLabel\">All Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TotalAssertionsCount}</span><br><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Failed Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.FailedAssertionsCount}</span><br><br>");
-                sb.AppendLine($"<span class=\"titleLabel\">Passed Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.PassedAssertionsCount}</span><br><br>");
+
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">All Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.TotalAssertionsCount}</span><br><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Failed Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.FailedAssertionsCount}</span><br><br>");
+                sb.AppendLine(
+                    $"<span class=\"titleLabel\">Passed Assertions:</span>  <span class=\"titleLabelValue\">{currentTestScenarioResults.PassedAssertionsCount}</span><br><br>");
                 sb.AppendLine($"<div id=\"jsGridAllAssertions{testScenarioCount}\"></div><br><br>");
                 sb.AppendLine("</div>");
 

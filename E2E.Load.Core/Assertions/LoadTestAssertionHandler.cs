@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Collections.Generic;
 using E2E.Load.Core.Model.Results;
 
@@ -18,9 +19,12 @@ namespace E2E.Load.Core.Model.Assertions
 {
     public abstract class LoadTestAssertionHandler
     {
-        protected LoadTestAssertionHandler() => ResponseAssertionResultsCollection = new List<ResponseAssertionResults>();
+        protected LoadTestAssertionHandler() =>
+            ResponseAssertionResultsCollection = new List<ResponseAssertionResults>();
 
-        public abstract List<ResponseAssertionResults> Execute(HttpRequestDto httpRequestDto, IMeasuredResponse response);
+        public abstract List<ResponseAssertionResults> Execute(HttpRequestDto httpRequestDto,
+            IMeasuredResponse response);
+
         protected List<ResponseAssertionResults> ResponseAssertionResultsCollection { get; set; }
     }
 }

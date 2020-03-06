@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,15 @@ namespace E2E.Load.Core.Model.Assertions
         private readonly List<LoadTestLocator> _loadTestLocators;
         private readonly List<LoadTestEnsureHandler> _loadTestEnsureHandler;
 
-        public EnsuresLoadTestAssertionHandler(List<LoadTestLocator> loadTestLocators, List<LoadTestEnsureHandler> loadTestEnsureHandler)
+        public EnsuresLoadTestAssertionHandler(List<LoadTestLocator> loadTestLocators,
+            List<LoadTestEnsureHandler> loadTestEnsureHandler)
         {
             _loadTestLocators = loadTestLocators;
             _loadTestEnsureHandler = loadTestEnsureHandler;
         }
 
-        public override List<ResponseAssertionResults> Execute(HttpRequestDto httpRequestDto, IMeasuredResponse response)
+        public override List<ResponseAssertionResults> Execute(HttpRequestDto httpRequestDto,
+            IMeasuredResponse response)
         {
             ResponseAssertionResultsCollection.Clear();
             if (httpRequestDto.ResponseAssertions.Count > 0)
@@ -40,25 +43,30 @@ namespace E2E.Load.Core.Model.Assertions
                 foreach (var responseAssertion in httpRequestDto.ResponseAssertions)
                 {
                     var responseAssertionResults = new ResponseAssertionResults
-                                                   {
-                                                       AssertionType = responseAssertion.ToString()
-                                                   };
-                 var htmlDocument = new HtmlDocument();
+                    {
+                        AssertionType = responseAssertion.ToString()
+                    };
+                    var htmlDocument = new HtmlDocument();
                     htmlDocument.LoadHtml(response.Content);
                     if (_loadTestLocators.Any(x => x.LocatorType.Equals(responseAssertion.Locator)))
                     {
-                        var currentLocator = _loadTestLocators.First(x => x.LocatorType.Equals(responseAssertion.Locator));
+                        var currentLocator =
+                            _loadTestLocators.First(x => x.LocatorType.Equals(responseAssertion.Locator));
                         try
                         {
-                            LoadTestElement htmlElement = currentLocator.LocateElement(htmlDocument, responseAssertion.LocatorValue);
+                            LoadTestElement htmlElement =
+                                currentLocator.LocateElement(htmlDocument, responseAssertion.LocatorValue);
                             if (_loadTestEnsureHandler.Any(x => x.EnsureType.Equals(responseAssertion.AssertionType)))
                             {
-                                var currentEnsureHandler = _loadTestEnsureHandler.First(x => x.EnsureType.Equals(responseAssertion.AssertionType));
-                                responseAssertionResults = currentEnsureHandler.Execute(htmlElement, responseAssertion.ExpectedValue);
+                                var currentEnsureHandler = _loadTestEnsureHandler.First(x =>
+                                    x.EnsureType.Equals(responseAssertion.AssertionType));
+                                responseAssertionResults =
+                                    currentEnsureHandler.Execute(htmlElement, responseAssertion.ExpectedValue);
                             }
                             else
                             {
-                                responseAssertionResults.FailedMessage = $"AssertionType {responseAssertion.AssertionType} is not supported.";
+                                responseAssertionResults.FailedMessage =
+                                    $"AssertionType {responseAssertion.AssertionType} is not supported.";
                                 responseAssertionResults.Passed = false;
                             }
                         }
@@ -70,7 +78,8 @@ namespace E2E.Load.Core.Model.Assertions
                     }
                     else
                     {
-                        responseAssertionResults.FailedMessage = $"Locator {responseAssertion.Locator} is not supported.";
+                        responseAssertionResults.FailedMessage =
+                            $"Locator {responseAssertion.Locator} is not supported.";
                         responseAssertionResults.Passed = false;
                     }
 

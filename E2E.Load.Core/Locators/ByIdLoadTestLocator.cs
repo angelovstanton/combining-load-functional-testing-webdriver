@@ -11,13 +11,14 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using HtmlAgilityPack;
 
 namespace E2E.Load.Core.Model.Locators
 {
     public class ByIdLoadTestLocator : LoadTestLocator
     {
-        public override string LocatorType => "Bellatrix.Web.ById";
+        public override string LocatorType => "By.Id";
 
         public override LoadTestElement LocateElement(HtmlDocument htmlDoc, string locatorValue)
         {

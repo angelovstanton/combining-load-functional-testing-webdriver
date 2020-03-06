@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Linq;
 using HtmlAgilityPack;
 using HtmlAgilityPack.CssSelectors.NetCore;
@@ -19,7 +20,7 @@ namespace E2E.Load.Core.Model.Locators
 {
     public class ByCssLoadTestLocator : LoadTestLocator
     {
-        public override string LocatorType => "Bellatrix.Web.ByCss";
+        public override string LocatorType => "By.CssSelector";
 
         public override LoadTestElement LocateElement(HtmlDocument htmlDoc, string locatorValue)
         {

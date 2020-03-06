@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using E2E.Load.Core.Model.Results;
 
 namespace E2E.Load.Core.Model.Ensures

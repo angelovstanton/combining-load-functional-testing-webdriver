@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="LoadTesting\" />
+    <ProjectReference Include="..\E2E.Core\E2E.Core.csproj" />
+    <ProjectReference Include="..\E2E.Load.Core\E2E.Load.Core.csproj" />
   </ItemGroup>
 
 </Project>

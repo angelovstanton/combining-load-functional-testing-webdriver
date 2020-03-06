@@ -11,10 +11,15 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 namespace E2E.Load.Core
 {
     public class RequestModification
     {
+        public RequestModification()
+        {
+        }
+
         public RequestModification(string baseValue) => BaseValue = baseValue;
 
         public string BaseValue { get; set; }

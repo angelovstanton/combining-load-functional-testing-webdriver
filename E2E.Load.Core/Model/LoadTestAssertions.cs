@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Collections.Generic;
 using E2E.Load.Core.Model.Assertions;
 using E2E.Load.Core.Model.Ensures;
@@ -24,7 +25,8 @@ namespace E2E.Load.Core.Model
         private readonly List<LoadTestLocator> _loadTestLocators;
         private readonly List<LoadTestEnsureHandler> _loadTestEnsureHandler;
 
-        public LoadTestAssertions(List<LoadTestAssertionHandler> loadTestAssertionHandlers, List<LoadTestLocator> loadTestLocators, List<LoadTestEnsureHandler> loadTestEnsureHandler)
+        public LoadTestAssertions(List<LoadTestAssertionHandler> loadTestAssertionHandlers,
+            List<LoadTestLocator> loadTestLocators, List<LoadTestEnsureHandler> loadTestEnsureHandler)
         {
             _loadTestAssertionHandlers = loadTestAssertionHandlers;
             _loadTestLocators = loadTestLocators;
@@ -38,7 +40,8 @@ namespace E2E.Load.Core.Model
 
         public void AssertAllRecordedEnsureAssertions()
         {
-            _loadTestAssertionHandlers.Add(new EnsuresLoadTestAssertionHandler(_loadTestLocators, _loadTestEnsureHandler));
+            _loadTestAssertionHandlers.Add(
+                new EnsuresLoadTestAssertionHandler(_loadTestLocators, _loadTestEnsureHandler));
         }
     }
 }

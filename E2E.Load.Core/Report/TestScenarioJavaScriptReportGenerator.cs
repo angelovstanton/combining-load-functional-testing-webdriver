@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
@@ -117,11 +118,14 @@ namespace E2E.Load.Core.Report
                 sb.AppendLine($"var dbRequests{testScenarioCount} = {{");
                 sb.AppendLine("loadData: function (filter) {");
                 sb.AppendLine($"return $.grep(this.requestResults{testScenarioCount}, function (requestResults) {{");
-                sb.AppendLine("return (!filter.URL || requestResults.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "return (!filter.URL || requestResults.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
                 sb.AppendLine("&& (!filter.IsSuccessful || requestResults.IsSuccessful === filter.IsSuccessful)");
-                sb.AppendLine("&& (!filter.ExecutionTime || requestResults.ExecutionTime.indexOf(filter.ExecutionTime) > -1)");
+                sb.AppendLine(
+                    "&& (!filter.ExecutionTime || requestResults.ExecutionTime.indexOf(filter.ExecutionTime) > -1)");
                 sb.AppendLine("&& (!filter.StatusCode || requestResults.StatusCode === filter.StatusCode)");
-                sb.AppendLine("&& (!filter.Exception || requestResults.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
+                sb.AppendLine(
+                    "&& (!filter.Exception || requestResults.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
                 sb.AppendLine("});");
                 sb.AppendLine("}");
                 sb.AppendLine("};");
@@ -132,11 +136,13 @@ namespace E2E.Load.Core.Report
                     foreach (var requestResults in currentTestScenarioRunResult.RequestResults)
                     {
                         sb.AppendLine("{");
-                        sb.AppendLine($" \"URL\": \"{HttpUtility.JavaScriptStringEncode(requestResults.RequestUrl)}\",");
+                        sb.AppendLine(
+                            $" \"URL\": \"{HttpUtility.JavaScriptStringEncode(requestResults.RequestUrl)}\",");
                         sb.AppendLine($" \"IsSuccessful\": \"{requestResults.IsSuccessful}\",");
                         sb.AppendLine($" \"ExecutionTime\": \"{requestResults.ExecutionTime}\",");
                         sb.AppendLine($" \"StatusCode\": \"{requestResults.StatusCode}\",");
-                        sb.AppendLine($" \"Exception\": \"{HttpUtility.JavaScriptStringEncode(requestResults?.ResponseContent)}\",");
+                        sb.AppendLine(
+                            $" \"Exception\": \"{HttpUtility.JavaScriptStringEncode(requestResults?.ResponseContent)}\",");
                         sb.AppendLine("},");
                     }
                 }
@@ -184,10 +190,13 @@ namespace E2E.Load.Core.Report
                 sb.AppendLine($"var dbfailedAssertions{testScenarioCount} = {{");
                 sb.AppendLine("loadData: function (filter) {");
                 sb.AppendLine($"return $.grep(this.failedAssertions{testScenarioCount}, function (failedAssertion) {{");
-                sb.AppendLine("return (!filter.URL || failedAssertion.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "return (!filter.URL || failedAssertion.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
                 sb.AppendLine("&& (!filter.IsSuccessful || failedAssertion.IsSuccessful === filter.IsSuccessful)");
-                sb.AppendLine("&& (!filter.AssertionType || failedAssertion.AssertionType.toLowerCase().indexOf(filter.AssertionType.toLowerCase()) > -1)");
-                sb.AppendLine("&& (!filter.Exception || failedAssertion.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
+                sb.AppendLine(
+                    "&& (!filter.AssertionType || failedAssertion.AssertionType.toLowerCase().indexOf(filter.AssertionType.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "&& (!filter.Exception || failedAssertion.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
                 sb.AppendLine("});");
                 sb.AppendLine("}");
                 sb.AppendLine("};");
@@ -204,10 +213,13 @@ namespace E2E.Load.Core.Report
                 sb.AppendLine($"var dbfailedAssertions{testScenarioCount} = {{");
                 sb.AppendLine("loadData: function (filter) {");
                 sb.AppendLine($"return $.grep(this.failedAssertions{testScenarioCount}, function (failedAssertion) {{");
-                sb.AppendLine("return (!filter.URL || failedAssertion.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "return (!filter.URL || failedAssertion.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
                 sb.AppendLine("&& (!filter.IsSuccessful || failedAssertion.IsSuccessful === filter.IsSuccessful)");
-                sb.AppendLine("&& (!filter.AssertionType || failedAssertion.AssertionType.toLowerCase().indexOf(filter.AssertionType.toLowerCase()) > -1)");
-                sb.AppendLine("&& (!filter.Exception || failedAssertion.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
+                sb.AppendLine(
+                    "&& (!filter.AssertionType || failedAssertion.AssertionType.toLowerCase().indexOf(filter.AssertionType.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "&& (!filter.Exception || failedAssertion.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
                 sb.AppendLine("});");
                 sb.AppendLine("}");
                 sb.AppendLine("};");
@@ -222,10 +234,12 @@ namespace E2E.Load.Core.Report
                             if (responseAssertionResult != null && !responseAssertionResult.Passed)
                             {
                                 sb.AppendLine("{");
-                                sb.AppendLine($" \"URL\": \"{HttpUtility.JavaScriptStringEncode(requestResults?.RequestUrl)}\",");
+                                sb.AppendLine(
+                                    $" \"URL\": \"{HttpUtility.JavaScriptStringEncode(requestResults?.RequestUrl)}\",");
                                 sb.AppendLine($" \"IsSuccessful\": \"{responseAssertionResult?.Passed}\",");
                                 sb.AppendLine($" \"AssertionType\": \"{responseAssertionResult?.AssertionType}\",");
-                                sb.AppendLine($" \"Exception\": \"{HttpUtility.JavaScriptStringEncode(responseAssertionResult?.FailedMessage)}\",");
+                                sb.AppendLine(
+                                    $" \"Exception\": \"{HttpUtility.JavaScriptStringEncode(responseAssertionResult?.FailedMessage)}\",");
                                 sb.AppendLine("},");
                             }
                         }
@@ -279,10 +293,13 @@ namespace E2E.Load.Core.Report
                 sb.AppendLine($"var dballAssertions{testScenarioCount} = {{");
                 sb.AppendLine("loadData: function (filter) {");
                 sb.AppendLine($"return $.grep(this.allAssertions{testScenarioCount}, function (allAssertion) {{");
-                sb.AppendLine("return (!filter.URL || allAssertion.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "return (!filter.URL || allAssertion.URL.toLowerCase().indexOf(filter.URL.toLowerCase()) > -1)");
                 sb.AppendLine("&& (!filter.IsSuccessful || allAssertion.IsSuccessful === filter.IsSuccessful)");
-                sb.AppendLine("&& (!filter.AssertionType || allAssertion.AssertionType.toLowerCase().indexOf(filter.AssertionType.toLowerCase()) > -1)");
-                sb.AppendLine("&& (!filter.Exception || allAssertion.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
+                sb.AppendLine(
+                    "&& (!filter.AssertionType || allAssertion.AssertionType.toLowerCase().indexOf(filter.AssertionType.toLowerCase()) > -1)");
+                sb.AppendLine(
+                    "&& (!filter.Exception || allAssertion.Exception.toLowerCase().indexOf(filter.Exception.toLowerCase()) > -1);");
                 sb.AppendLine("});");
                 sb.AppendLine("}");
                 sb.AppendLine("};");
@@ -295,14 +312,17 @@ namespace E2E.Load.Core.Report
                         foreach (var responseAssertionResult in requestResults.ResponseAssertionResults)
                         {
                             sb.AppendLine("{");
-                            sb.AppendLine($" \"URL\": \"{HttpUtility.JavaScriptStringEncode(requestResults?.RequestUrl)}\",");
+                            sb.AppendLine(
+                                $" \"URL\": \"{HttpUtility.JavaScriptStringEncode(requestResults?.RequestUrl)}\",");
                             sb.AppendLine($" \"IsSuccessful\": \"{responseAssertionResult?.Passed}\",");
                             sb.AppendLine($" \"AssertionType\": \"{responseAssertionResult?.AssertionType}\",");
-                            sb.AppendLine($" \"Exception\": \"{HttpUtility.JavaScriptStringEncode(responseAssertionResult?.FailedMessage)}\",");
+                            sb.AppendLine(
+                                $" \"Exception\": \"{HttpUtility.JavaScriptStringEncode(responseAssertionResult?.FailedMessage)}\",");
                             sb.AppendLine("},");
                         }
                     }
                 }
+
                 sb.AppendLine("];");
                 sb.AppendLine($"$(\"#jsGridAllAssertions{testScenarioCount}\").jsGrid({{");
                 sb.AppendLine("width: \"100 % \",");
@@ -363,6 +383,7 @@ namespace E2E.Load.Core.Report
             {
                 sb.Append($"\"{i}\",");
             }
+
             sb.AppendLine("],");
             sb.AppendLine("datasets: [");
             int colorIndex = 0;
@@ -375,6 +396,7 @@ namespace E2E.Load.Core.Report
                 {
                     sb.Append($"\"{testScenarioRunResults.ExecutionTime.TotalSeconds}\",");
                 }
+
                 sb.AppendLine("],");
                 sb.AppendLine($"backgroundColor: 'rgba({hexChartColors[colorIndex]}, 0.2)',");
                 sb.AppendLine($"borderColor: 'rgba({hexChartColors[colorIndex]}, 1)',");

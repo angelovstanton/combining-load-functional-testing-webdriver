@@ -11,6 +11,7 @@
 // </copyright>
 // <author>Anton Angelov</author>
 // <site>https://bellatrix.solutions/</site>
+
 using System.Collections.Generic;
 using E2E.Load.Core.Model.Results;
 
@@ -18,18 +19,20 @@ namespace E2E.Load.Core.Model.Assertions
 {
     public class SuccessStatusLoadTestAssertionHandler : LoadTestAssertionHandler
     {
-        public override List<ResponseAssertionResults> Execute(HttpRequestDto httpRequestDto, IMeasuredResponse response)
+        public override List<ResponseAssertionResults> Execute(HttpRequestDto httpRequestDto,
+            IMeasuredResponse response)
         {
             ResponseAssertionResultsCollection.Clear();
             var responseAssertionResults = new ResponseAssertionResults
-                                           {
-                                               AssertionType = "StatusCode is SUCCESS",
-                                               Passed = true
-                                           };
-
-            if ((int)response.StatusCode <= 200 && (int)response.StatusCode >= 299)
             {
-                responseAssertionResults.FailedMessage = $"Request's status code was not successful - {response.StatusCode} {response.ResponseUri}.";
+                AssertionType = "StatusCode is SUCCESS",
+                Passed = true
+            };
+
+            if ((int) response.StatusCode <= 200 && (int) response.StatusCode >= 299)
+            {
+                responseAssertionResults.FailedMessage =
+                    $"Request's status code was not successful - {response.StatusCode} {response.ResponseUri}.";
             }
 
             ResponseAssertionResultsCollection.Add(responseAssertionResults);

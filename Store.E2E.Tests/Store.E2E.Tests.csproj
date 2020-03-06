@@ -20,5 +20,11 @@
     <ProjectReference Include="..\E2E.Load.Core\E2E.Load.Core.csproj" />
     <ProjectReference Include="..\E2E.Web.Core\E2E.Web.Core.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="testFrameworkSettings.$(Configuration).json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>
