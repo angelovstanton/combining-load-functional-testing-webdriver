@@ -10,6 +10,7 @@
 // limitations under the License.
 // </copyright>
 // <author>Anton Angelov</author>
+
 using OpenQA.Selenium;
 
 namespace E2E.Web.Core

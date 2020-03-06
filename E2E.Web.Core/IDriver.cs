@@ -10,6 +10,7 @@
 // limitations under the License.
 // </copyright>
 // <author>Anton Angelov</author>
+
 using System;
 using System.Collections.Generic;
 using OpenQA.Selenium;

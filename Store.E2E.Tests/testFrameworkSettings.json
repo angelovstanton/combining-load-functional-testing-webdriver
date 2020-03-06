@@ -4,8 +4,8 @@
     "defaultHost": "demos.bellatrix.solutions",
     "shouldRecordHostRequestsOnly": "true",
     "requestsFileLocation": "AssemblyFolder\\LoadTestsRequests\\",
-    "certificatePaths": [ "AssemblyFolder\\bellatrix.cer" ],
-    "ignoreUrlRequestsPatterns": [ ".*wp-admin.*" ]
+    "certificatePaths": ["AssemblyFolder\\bellatrix.cer"],
+    "ignoreUrlRequestsPatterns": [".*wp-admin.*"]
   },
   "webProxySettings": {
     "isEnabled": "true",

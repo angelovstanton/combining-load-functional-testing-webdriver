@@ -3,9 +3,10 @@
     "isEnabled": "true",
     "defaultHost": "demos.bellatrix.solutions",
     "shouldRecordHostRequestsOnly": "true",
-    "requestsFileLocation": "AssemblyFolder\\..\\..\\..\\..\\Store.E2E.Tests\\bin\\Debug\\netcoreapp3.1\\LoadTestsRequests\\",
-    "certificatePaths": [ "AssemblyFolder\\bellatrix.cer" ],
-    "ignoreUrlRequestsPatterns": [ ".*wp-admin.*" ]
+    "requestsFileLocation":
+      "AssemblyFolder\\..\\..\\..\\..\\Store.E2E.Tests\\bin\\Debug\\netcoreapp3.1\\LoadTestsRequests\\",
+    "certificatePaths": ["AssemblyFolder\\bellatrix.cer"],
+    "ignoreUrlRequestsPatterns": [".*wp-admin.*"]
   },
   "webProxySettings": {
     "isEnabled": "true",

@@ -10,6 +10,7 @@
 // limitations under the License.
 // </copyright>
 // <author>Anton Angelov</author>
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,8 +38,8 @@ namespace E2E.Web.Core
             _driver.Navigate().GoToUrl(url);
         }
 
-        public Uri Url 
-        { 
+        public Uri Url
+        {
             get => new Uri(_driver.Url);
             set => _driver.Url = value.ToString();
         }
@@ -53,21 +54,21 @@ namespace E2E.Web.Core
 
         public IEnumerable<IElement> FindElements(By locator)
         {
-            ReadOnlyCollection<IWebElement> nativeElements = 
+            ReadOnlyCollection<IWebElement> nativeElements =
                 _webDriverWait.Until(ExpectedConditions.PresenceOfAllElementsLocatedBy(locator));
-             var elements = new List<IElement>();
-             foreach (var nativeElement in nativeElements)
-             {
-                 IElement element = new ElementAdapter(_driver, nativeElement, locator);
-                 elements.Add(element);
-             }
+            var elements = new List<IElement>();
+            foreach (var nativeElement in nativeElements)
+            {
+                IElement element = new ElementAdapter(_driver, nativeElement, locator);
+                elements.Add(element);
+            }
 
-             return elements;
+            return elements;
         }
 
         public void WaitForAjax()
         {
-            var js = (IJavaScriptExecutor)_driver;
+            var js = (IJavaScriptExecutor) _driver;
             _webDriverWait.Until(wd => js.ExecuteScript("return jQuery.active").ToString() == "0");
         }
 

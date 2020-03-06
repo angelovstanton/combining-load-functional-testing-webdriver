@@ -10,6 +10,7 @@
 // limitations under the License.
 // </copyright>
 // <author>Anton Angelov</author>
+
 using System;
 using E2E.Load.Core.Services;
 using OpenQA.Selenium;
@@ -58,9 +59,11 @@ namespace E2E.Web.Core
 
         public void EnsuredTextIs(string value)
         {
-             var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30));
-            webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(_webElement, value));
-            ResponseAssertionSetter.AddResponseAssertionToHttpRequest(GetLocatorInfo().Item1, GetLocatorInfo().Item2, value);
+            var webDriverWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(30));
+            webDriverWait.Until(
+                SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(_webElement, value));
+            ResponseAssertionSetter.AddResponseAssertionToHttpRequest(GetLocatorInfo().Item1, GetLocatorInfo().Item2,
+                value);
         }
 
         private (string, string) GetLocatorInfo()

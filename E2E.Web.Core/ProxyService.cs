@@ -1,4 +1,17 @@
-﻿using System;
+﻿// <copyright file="ProxyService.cs" company="Automate The Planet Ltd.">
+// Copyright 2020 Automate The Planet Ltd.
+// Licensed under the Apache License, Version 2.0 (the "License");
+// You may not use this file except in compliance with the License.
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+// </copyright>
+// <author>Anton Angelov</author>
+
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Net;
@@ -18,7 +31,7 @@ using Titanium.Web.Proxy.Models;
 
 namespace E2E.Load.Core.Services
 {
-   public class ProxyService : IDisposable
+    public class ProxyService : IDisposable
     {
         private readonly ConcurrentDictionary<string, string> _redirectUrls;
         private readonly ConcurrentBag<string> _blockUrls;
@@ -125,21 +138,25 @@ namespace E2E.Load.Core.Services
         public void AssertRequestMade(string url)
         {
             ShouldExecute();
-            bool areRequestsMade = RequestsHistory.Values.ToList().Any(r => r.Request.RequestUri.ToString().Contains(url));
+            bool areRequestsMade =
+                RequestsHistory.Values.ToList().Any(r => r.Request.RequestUri.ToString().Contains(url));
             Assert.IsTrue(areRequestsMade);
         }
 
         public void AssertRequestNotMade(string url)
         {
             ShouldExecute();
-            bool areRequestsMade = RequestsHistory.Values.ToList().Any(r => r.Request.RequestUri.ToString().Contains(url));
+            bool areRequestsMade =
+                RequestsHistory.Values.ToList().Any(r => r.Request.RequestUri.ToString().Contains(url));
             Assert.IsFalse(areRequestsMade);
         }
 
         public void AssertNoLargeImagesRequested(int contentLength = 40000)
         {
             ShouldExecute();
-            bool areThereLargeImages = RequestsHistory.Values.Any(r => r.Request.ContentType != null && r.Request.ContentType.StartsWith("image", StringComparison.Ordinal) && r.Request.ContentLength < contentLength);
+            bool areThereLargeImages = RequestsHistory.Values.Any(r =>
+                r.Request.ContentType != null && r.Request.ContentType.StartsWith("image", StringComparison.Ordinal) &&
+                r.Request.ContentLength < contentLength);
             Assert.IsFalse(areThereLargeImages);
         }
 
@@ -148,20 +165,21 @@ namespace E2E.Load.Core.Services
             Thread.Sleep(100);
             var l = new TcpListener(IPAddress.Loopback, 0);
             l.Start();
-            int port = ((IPEndPoint)l.LocalEndpoint).Port;
+            int port = ((IPEndPoint) l.LocalEndpoint).Port;
             l.Stop();
             return port;
         }
 
         private async Task OnRequestCaptureTrafficEventHandler(object sender, SessionEventArgs e) => await Task.Run(
-                () =>
+            () =>
+            {
+                if (!RequestsHistory.ContainsKey(e.HttpClient.Request.GetHashCode()) && e.HttpClient != null &&
+                    e.HttpClient.Request != null)
                 {
-                    if (!RequestsHistory.ContainsKey(e.HttpClient.Request.GetHashCode()) && e.HttpClient != null && e.HttpClient.Request != null)
-                    {
-                        var measuredRequest = new MeasuredRequest(DateTime.Now, e.HttpClient.Request);
-                        RequestsHistory.GetOrAdd(e.HttpClient.Request.GetHashCode(), measuredRequest);
-                    }
-                });
+                    var measuredRequest = new MeasuredRequest(DateTime.Now, e.HttpClient.Request);
+                    RequestsHistory.GetOrAdd(e.HttpClient.Request.GetHashCode(), measuredRequest);
+                }
+            });
 
         private async Task OnRequestBlockResourceEventHandler(object sender, SessionEventArgs e)
             => await Task.Run(
@@ -195,24 +213,27 @@ namespace E2E.Load.Core.Services
         }
 
         private async Task OnResponseCaptureTrafficEventHandler(object sender, SessionEventArgs e) => await Task.Run(
-                () =>
+            () =>
+            {
+                if (!ResponsesHistory.ContainsKey(e.HttpClient.Response.GetHashCode()) &&
+                    e.HttpClient?.Response != null)
                 {
-                    if (!ResponsesHistory.ContainsKey(e.HttpClient.Response.GetHashCode()) && e.HttpClient?.Response != null)
-                    {
-                        ResponsesHistory.GetOrAdd(e.HttpClient.Response.GetHashCode(), e.HttpClient.Response);
-                    }
-                });
+                    ResponsesHistory.GetOrAdd(e.HttpClient.Response.GetHashCode(), e.HttpClient.Response);
+                }
+            });
 
         private void ShouldExecute()
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                throw new NotSupportedException("Bellatrix Web capture HTTP traffic feature is available only on Windows.");
+                throw new NotSupportedException(
+                    "Bellatrix Web capture HTTP traffic feature is available only on Windows.");
             }
 
             if (!IsEnabled)
             {
-                throw new ArgumentException("ProxyService is not enabled. To use open testFramework.json and set isEnabled = true of webProxySettings");
+                throw new ArgumentException(
+                    "ProxyService is not enabled. To use open testFramework.json and set isEnabled = true of webProxySettings");
             }
         }
 
